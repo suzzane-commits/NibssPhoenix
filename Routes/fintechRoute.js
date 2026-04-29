@@ -199,4 +199,6 @@ router.get("/accounts", auth, fintechController.getFintechAccounts);
  */
 router.get("/account/balance/:accountNumber", auth, fintechController.getAccountBalance);
 
+router.get( "/history/:accountNumber", auth,fintechController.getTransactionHistory);
+
 module.exports = router;

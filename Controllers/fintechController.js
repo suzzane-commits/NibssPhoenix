@@ -414,3 +414,41 @@ exports.getAccountBalance = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+exports.getTransactionHistory = async (req, res) => {
+  try {
+    const { accountNumber } = req.params;
+
+    // Confirm account
+    const account = await Account.findOne({
+      accountNumber,
+      fintechId: req.user.fintechId
+    });
+
+    if (!account) {
+      return res.status(403).json({
+        message: "Unauthorized access to account history"
+      });
+    }
+
+    // Get all transactions involving this account
+    const transactions = await Transaction.find({
+      $or: [
+        { senderAccount: accountNumber },
+        { receiverAccount: accountNumber }
+      ]
+    }).sort({ createdAt: -1 });
+
+    res.json({
+      accountNumber,
+      count: transactions.length,
+      transactions
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Failed to fetch transaction history"
+    });
+  }
+};

@@ -46,6 +46,7 @@ app.use("/api", fintechRoute);
 
 
 
-app.listen(process.env.PORT || 8080, () => {
+app.listen(process.env.PORT || 4040, () => {
     console.log(`Server running on port ${process.env.PORT}`);
 });
+console.log("JWT_SECRET:", process.env.JWT_SECRET);
