@@ -135,7 +135,7 @@ Authorization: Bearer <your_token>
 POST /api/auth/token
 
 **Create Account**
-POST /api/fintech/create-account
+POST /api/account/create
 
 Sample body:
 
@@ -146,10 +146,9 @@ Sample body:
 }
 
 **Name Enquiry**
-GET /api/fintech/name-enquiry/:accountNumber
-
+GET /api/account/name-enquiry/:accountNumber
 **Transfer Funds**
-POST /api/fintech/transfer
+POST /api/transfer
 
 Sample body:
 
@@ -160,13 +159,13 @@ Sample body:
 }
 
 **Account Balance**
-GET /api/fintech/balance/:accountNumber
+GET /api/account/balance/:accountNumber
 
 **Transaction Status**
-GET /api/fintech/transaction/:reference
+GET /api/transaction/:reference
 
 **Transaction History**
-GET /api/fintech/history/:accountNumber
+GET /api/history/:accountNumber
 
 ## 🔒 Data Privacy Implementation
 
